@@ -11,7 +11,7 @@ import com.tweteroo.api.models.SignUp;
 import com.tweteroo.api.repository.AuthRepository;
 
 @RestController
-@RequestMapping("/signup")
+@RequestMapping("/api/auth/sign-up")
 
 public class AuthController {
 
