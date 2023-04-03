@@ -10,6 +10,8 @@ import com.tweteroo.api.dto.AuthDTO;
 import com.tweteroo.api.models.SignUp;
 import com.tweteroo.api.repository.AuthRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth/sign-up")
 
@@ -19,7 +21,7 @@ public class AuthController {
   private AuthRepository repository;
 
   @PostMapping
-  public void signUp(@RequestBody AuthDTO req) {
+  public void signUp(@RequestBody @Valid AuthDTO req) {
 
     repository.save(new SignUp(req));
   }
