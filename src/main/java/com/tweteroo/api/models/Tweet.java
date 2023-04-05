@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 
 public class Tweet {
 
-  public Tweet(TweetDTO data) {
+  public Tweet(TweetDTO data, String avatar) {
     this.username = data.username();
-    this.avatar = data.avatar();
+    this.avatar = avatar;
     this.tweet = data.tweet();
   }
 
@@ -29,10 +29,10 @@ public class Tweet {
   @Column(nullable = false)
   private String username;
 
-  @Column(nullable = true)
+  @Column(nullable = false)
   private String tweet;
 
-  @Column()
+  @Column(nullable = false)
   private String avatar;
 
 }
