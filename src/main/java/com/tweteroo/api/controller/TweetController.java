@@ -31,7 +31,9 @@ public class TweetController {
 
   @GetMapping()
   public List<Tweet> getAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
+
     return tweetService.getAll(page);
+
   }
 
   @GetMapping("/{username}")
