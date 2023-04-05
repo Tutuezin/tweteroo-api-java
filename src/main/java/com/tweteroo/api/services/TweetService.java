@@ -15,7 +15,7 @@ import com.tweteroo.api.repository.TweetRepository;
 public class TweetService {
 
   @Autowired
-  private TweetRepository repository;
+  private TweetRepository tweetRepository;
 
   @Autowired
   private AuthRepository authRepository;
@@ -24,14 +24,20 @@ public class TweetService {
     List<SignUp> user = authRepository.findByUsername(req.username());
 
     if (!user.isEmpty()) {
-      repository.save(new Tweet(req, user.get(0).getAvatar()));
+      tweetRepository.save(new Tweet(req, user.get(0).getAvatar()));
     }
 
   }
 
   public List<Tweet> getAll(int page) {
 
-    return repository.findAll();
+    System.out.println(page);
+
+    return tweetRepository.findAll();
+  }
+
+  public List<Tweet> getAllTweetsByUserName(String username) {
+    return tweetRepository.findByUsername(username);
   }
 
 }

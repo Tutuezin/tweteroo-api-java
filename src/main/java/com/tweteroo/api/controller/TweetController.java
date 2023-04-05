@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +22,20 @@ import jakarta.validation.Valid;
 
 public class TweetController {
   @Autowired
-  private TweetService service;
+  private TweetService tweetService;
 
   @PostMapping
   public void create(@RequestBody @Valid TweetDTO req) {
-    service.create(req);
+    tweetService.create(req);
   }
 
   @GetMapping()
   public List<Tweet> getAll(@RequestParam(required = false, defaultValue = "0") Integer page) {
-    return service.getAll(page);
+    return tweetService.getAll(page);
+  }
+
+  @GetMapping("/{username}")
+  public List<Tweet> getAllTweetsByUserName(@PathVariable String username) {
+    return tweetService.getAllTweetsByUserName(username);
   }
 }
