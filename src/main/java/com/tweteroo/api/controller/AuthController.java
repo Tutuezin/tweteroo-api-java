@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tweteroo.api.dto.AuthDTO;
 import com.tweteroo.api.models.SignUp;
-import com.tweteroo.api.repository.AuthRepository;
+import com.tweteroo.api.services.AuthService;
 
 import jakarta.validation.Valid;
 
@@ -18,12 +18,12 @@ import jakarta.validation.Valid;
 public class AuthController {
 
   @Autowired
-  private AuthRepository repository;
+  private AuthService service;
 
   @PostMapping
   public void signUp(@RequestBody @Valid AuthDTO req) {
 
-    repository.save(new SignUp(req));
+    service.signUp(new SignUp(req));
   }
 
 }
